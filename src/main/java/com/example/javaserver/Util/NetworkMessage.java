@@ -1,58 +1,41 @@
 package com.example.javaserver.Util;
 
-import com.example.javaserver.Models.User;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.io.Serializable;
-import java.util.List;
 
 
 public class NetworkMessage implements Serializable {
 
-    @JsonProperty
+    @JsonProperty("eventType")
     NetworkRequest networkType;
-    @JsonProperty
-    String userId;
-
-    private List<User> userList;
-
-    public NetworkMessage(NetworkRequest networkType, String userId) {
+    @JsonProperty("object")
+    Object object;
+    @JsonCreator
+    public NetworkMessage(@JsonProperty("eventType") NetworkRequest networkType, @JsonProperty("object") Object object) {
         this.networkType = networkType;
-        this.userId = userId;
+        this.object = object;
     }
 
-    public NetworkMessage(NetworkRequest type) {
-        this.networkType = type;
-    }
+    @JsonGetter
     public NetworkRequest getNetworkType() {
         return networkType;
     }
-
+    @JsonSetter
     public void setNetworkType(NetworkRequest networkType) {
         this.networkType = networkType;
     }
-
-    public String getUserId() {
-        return userId;
+    @JsonGetter
+    public Object getObject()
+    {
+        return object;
     }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
-    }
-
-    @Override
-    public String toString() {
-        return "NetworkMessage{" +
-                "networkType=" + networkType +
-                ", userId='" + userId + '\'' +
-                '}';
+    @JsonSetter
+    public void setObject(Object object)
+    {
+        this.object = object;
     }
 }

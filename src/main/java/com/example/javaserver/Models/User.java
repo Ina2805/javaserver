@@ -2,8 +2,6 @@ package com.example.javaserver.Models;
 
 
 public class User{
-
-    private Long id;
     private String userId;
 
     private String userName;

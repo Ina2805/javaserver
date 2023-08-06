@@ -15,7 +15,11 @@ public class UserService implements IUserService {
     UserNetwork userNetwork;
     @Override
     public List<User> getAllUsers() {
-        System.out.println(userNetwork.getAllUsers());
         return userNetwork.getAllUsers();
+    }
+
+    @Override
+    public Boolean saveUser(User user) {
+        return userNetwork.saveUser(user);
     }
 }

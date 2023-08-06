@@ -25,4 +25,21 @@ import java.util.List;
 
         return gson.fromJson(received, new TypeToken<List<User>>() {}.getType());
     }
+
+    public Boolean saveUser(User user) {
+        Gson gson = new Gson();
+        String userSer = gson.toJson(user);
+        NetworkMessage request = new NetworkMessage(NetworkRequest.SAVE_USER, userSer);
+        String received = databaseClient.connect(request);
+        return gson.fromJson(received, boolean.class);
+    }
+
+    @Override
+    public Boolean deleteUser(String userid) {
+        Gson gson = new Gson();
+        String serializedUser = gson.toJson(userid);
+        NetworkMessage request = new NetworkMessage(NetworkRequest.DELETE_USER, serializedUser);
+        String received = databaseClient.connect(request);
+        return gson.fromJson(received, boolean.class);
+    }
 }
