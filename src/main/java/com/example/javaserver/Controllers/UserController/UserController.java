@@ -22,6 +22,17 @@ public class UserController {
         }
         return users;
     }
+    @GetMapping("/users/{userid}")
+    public User getUserById(@PathVariable String userid)
+    {
+        User user = userService.getUserById(userid);
+        if (user==null)
+        {
+            System.out.println("No User Found");
+        }
+        return user;
+    }
+
 
     @PostMapping("/users")
     public Boolean saveUser(@RequestBody User user)
@@ -29,4 +40,16 @@ public class UserController {
         Boolean response = userService.saveUser(user);
         return response;
     }
+    @DeleteMapping("/user/{userid}")
+    public boolean deleteUser(@PathVariable String userid)
+    {
+        Boolean response = userService.deleteUser(userid);
+        return response;
+    }
+    @PutMapping("/users/edit")
+    public Boolean editUser(@RequestBody User user) {
+        Boolean response = userService.editUser(user);
+        return response;
+    }
+
 }

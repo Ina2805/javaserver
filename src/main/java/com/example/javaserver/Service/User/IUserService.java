@@ -8,4 +8,8 @@ public interface IUserService {
     List<User> getAllUsers();
 
     Boolean saveUser(User user);
+    Boolean deleteUser(String userId);
+    Boolean editUser(User user);
+
+    User getUserById(String userId);
 }
